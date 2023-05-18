@@ -1,7 +1,7 @@
 FROM alpine:3.17.3
 
 RUN apk add --no-cache -X http://dl-cdn.alpinelinux.org/alpine/edge/testing --repository=http://dl-cdn.alpinelinux.org/alpine/edge/testing/ bazel6
-RUN apk add llvm g++ unzip zip
+RUN apk add llvm g++ unzip zip curl git
 
 # setting up android SDK
 ENV ANDROID_HOME /opt/android-sdk
@@ -20,7 +20,4 @@ RUN ls ${ANDROID_HOME}
 
 COPY . /opt/build
 WORKDIR /opt/buld
-
-RUN bazel build --config android
-
 
