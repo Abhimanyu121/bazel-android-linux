@@ -10,6 +10,7 @@ RUN apt-get install -y apt-transport-https
 RUN apt-get install -y gnupg
 RUN apt-get install -y gpg
 RUN apt-get install -y zip
+RUN apt-get install -y cmake
 
 
 RUN apt-get install -y lsb-release
@@ -28,7 +29,8 @@ RUN apt-get install -y libopencv-dev python3-opencv
 RUN curl -fsSL https://bazel.build/bazel-release.pub.gpg | gpg --dearmor >bazel-archive-keyring.gpg
 RUN mv bazel-archive-keyring.gpg /usr/share/keyrings
 RUN echo "deb [arch=amd64 signed-by=/usr/share/keyrings/bazel-archive-keyring.gpg] https://storage.googleapis.com/bazel-apt stable jdk1.8" | tee /etc/apt/sources.list.d/bazel.list
-RUN apt update -y && apt install bazel -y
+RUN apt -y update 
+RUN apt-get install -y bazel
 #install ccache and configure it
 RUN apt-get install -y ccache
 RUN /usr/sbin/update-ccache-symlinks
